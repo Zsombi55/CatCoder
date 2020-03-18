@@ -1,0 +1,239 @@
+<!-- Coding Contest, Harvester (Farmer) - Level 1
+
+Horizontal Serperntine travel.
+
+Input: max row number , max column number, start row number, start column number
+Output: {<Nr1> <Nr2> ... <row nr. * col nr.>} .
+Eg.: i = [5,2]   ->  2 * 5 = 10  ->   o = {1 2 4 3 5 6 8 7 9 10}
+
+var ro = 2;
+var co = 5;
+var n = 1;
+makeGrid(ro, co);
+function makeGrid(ro, co){
+    for(var y = 0; y < ro; y++){
+        for(var x = 0; x < co; x++){
+            console.log(n);
+            n++;
+        }
+    }
+} 
+
+Level 2 - ??
+Level 3 - Directional Serpentine travel.
+Level 4 - Half Spiral (only whole columns).
+-->
+<script> 
+
+// Create one dimensional array
+    var ro = 10; // row
+    var co = 10; // column
+    var sr = 1; // start row
+    var sc = 1 // start column
+    var d = "N"; // start direction, "N"-orth, "S"-outh, "E"-ast, "W"-est
+    var m = "HS"; // (directional) travel mode, "HS"- half spiral, "S"- serpentine
+    var farm = new Array(ro); // 1D array, "vertical"
+    
+    makegrid(ro, co);
+    // horizontalSerpentine(sr, sc);
+    // directionalSerpentine(sr, sc, d);
+    // directionalHalfSpiral(sr, sc, d, m);
+
+    function makegrid(ro, co) {
+        document.write("Creating 2D array <br>");
+        var n = 1;
+        // Loop to create 2D array using 1D array 
+        for (var i = 0; i < farm.length; i++) {
+            farm[i] = new Array(co); // 1D array(s), "horizontal" -- 1st(23)-i [ 1st(12)-j , 2nd(12)-j , 3rd(12)-j , ... , 23rd(12)-j ] .
+        }
+
+        // Loop to initilize 2D array elements. 
+        for (var i = 0; i < ro; i++) {
+            for (var j = 0; j < co; j++) {
+                farm[i][j] = n++;
+            }
+        }
+
+        // Loop to display the elements of 2D array. 
+        for (var i = 0; i < ro; i++) {
+            for (var j = 0; j < co; j++) {
+                document.write(farm[i][j] + " ");
+            }
+            document.write("<br>");
+        }
+    }
+
+    /* function horizontalSerpentine(sr, sc){
+        console.log(farm);
+        document.write("<br> Showing the traversed marks in a <b><u>horizontal serpentine</b></u> order: <br>"+
+        " -> starting from the TOP LEFT cell. <br><br>");
+        // Traverse through all rows 
+        for (var i = 0; i < farm.length; i++) 
+        {
+            // If current row is even, print from left to right.
+            if (i % 2 == 0) 
+            { 
+                for (var j = 0; j < farm[0].length; j++) 
+                    document.write(farm[i][j] + " "); 
+            } 
+            else    // If current row is odd, print from right to left.
+            { 
+                for (var j = farm[0].length - 1; j >= 0; j--) 
+                    document.write(farm[i][j] + " "); 
+            }
+        }
+        document.write("<br>");
+
+        document.write("<br> -> starting from the TOP RIGHT cell. <br><br>");
+        // Traverse through all rows
+        for (var i = 0; i < farm.length; i++) 
+        {
+            // If current row is even, print from left to right.
+            if (i % 2 == 0) 
+            { 
+                for (var j = farm[0].length - 1; j >= 0; j--) 
+                    document.write(farm[i][j] + " "); 
+            } 
+            else    // If current row is odd, print from right to left.
+            { 
+                for (var j = 0; j < farm[0].length; j++) 
+                    document.write(farm[i][j] + " ");
+            }
+        }
+        document.write("<br>");
+
+        document.write("<br> -> starting from the BOTTOM LEFT cell. <br><br>");
+        // Traverse through all rows
+        for (var i = farm.length - 1; i >= 0; i--) 
+        {
+            // If current row is even, print from left to right.
+            if (j % 2 == 0) 
+            { 
+                for (var j = farm[0].length - 1; j >= 0; j--) 
+                    document.write(farm[i][j] + " "); 
+            } 
+            else    // If current row is odd, print from right to left.
+            { 
+                for (var j = 0; j < farm[0].length; j++) 
+                    document.write(farm[i][j] + " "); 
+            }
+        }
+        document.write("<br>");
+
+        document.write("<br> -> starting from the BOTTOM RIGHT cell. <br><br>");
+        // Traverse through all rows
+        for (var i = farm.length - 1; i >= 0; i--) 
+        {
+            // If current row is even, print from left to right.
+            if (j % 2 == 0) 
+            { 
+                for (var j = 0; j < farm[0].length; j++) 
+                    document.write(farm[i][j] + " "); 
+            } 
+            else    // If current row is odd, print from right to left.
+            { 
+                for (var j = farm[0].length - 1; j >= 0; j--) 
+                    document.write(farm[i][j] + " "); 
+            }
+        }
+        document.write("<br>");
+    } */
+
+    /* function directionalSerpentine(sr, sc, d){
+        console.log(farm);
+        document.write("<br> Showing the traversed marks in a <u><b>directional serpentine</b></u> order: <br>"+
+        " -> starting from the BOTTOM LEFT cell, UP. <br><br>");
+        if (d == "N") {
+            console.log("Yes, north (up).");
+            // Vertical top-down Z pattern iteration from cell [0,0]. 
+            // for (var j = 0; j < farm[0].length; j++)
+            //     for (var i = 0; i < farm.length; i++)
+            //         document.write(farm[i][j] + " ");
+            
+            // Traverse through all rows
+            for (var j = 0; j < farm[0].length; j++) {
+                if (j % 2 == 0) {
+                    for (var i = farm.length - 1; i >= 0; i--)
+                        document.write(farm[i][j] + " ");
+                }
+                else {
+                    for (var i = 0; i < farm.length; i++)
+                        document.write(farm[i][j] + " ");
+                }
+            }
+        } else { console.log("No, other (" + d + ")."); }
+        document.write("<br>");
+    } */
+
+    /* function directionalHalfSpiral(sr, sc, d, m) {
+            console.log(farm);
+            document.write("<br> Showing the traversed marks in a <u><b>directional half-spiral</b></u> order: <br>" +
+                " -> starting from the BOTTOM LEFT cell, UP. <br><br>");
+            if (m == "HS") {
+                console.log("Yes, half-spiral mode.");
+                if (d == "N") {
+                    console.log("Yes, north direction (up).");
+                    // Traverse through all rows
+                    for (let i = 0; i < Math.ceil(farm[0].length) / 2; i++) {
+                        let col1 = i;
+                        let col2 = farm[0].length - 1 - i;
+                        if (col1 !== col2) {
+                            printCol(farm, col1, -1);
+                            printCol(farm, col2, 1);
+                        }
+                        else printCol(farm, col1);
+                    }
+                } else { console.log("No, other direction: " + d); }
+            } else { console.log("No, other mode: " + m); }
+            document.write("<br>");
+        }
+
+    function printCol(mat, col, dir) {
+        for (let i = 0; i < mat.length; i++) {
+            let row = dir === 1 ? i : mat.length - 1 - i;
+            document.write(mat[row][col] + " ");
+        }
+    } */
+</script>
+
+<!--
+Level 6 - one & two lane harvesting with  " 0 "  for empty/no & visited cells.
+ 1  2  3  4  5  6  7  8  9 10
+11 12 13 14 15 16 17 18 19 20
+21 22 23 24 25 26 27 28 29 30
+31 32 33 34 35 36 37 38 39 40
+41 42 43 44 45 46 47 48 49 50
+51 52 53 54 55 56 57 58 59 60
+61 62 63 64 65 66 67 68 69 70
+71 72 73 74 75 76 77 78 79 80
+81 82 83 84 85 86 87 88 89 90
+91 92 93 94 95 96 97 98 99 100
+
+(10, 10, 10, 10, W, S, 1)
+100 99 98 97 96 95 94 93 92 91 81 82 83 84 85 86 87 88 89 90 80 79 78 77 76 75 74 73 72 71 61 62 63 64 65 66 67 68 69 70 60 59 58 57 56 55 54 53 52 51 41 42 43 44 45 46 47 48 49 50 40 39 38 37 36 35 34 33 32 31 21 22 23 24 25 26 27 28 29 30 20 19 18 17 16 15 14 13 12 11 1 2 3 4 5 6 7 8 9 10
+
+(10, 10, 10, 10, W, S, 2) - for some reason this is not accepted:
+100 90 99 89 98 88 97 87 96 86 95 85 94 84 93 83 92 82 91 81 61 71 62 72 63 73 64 74 65 75 66 76 67 77 68 78 69 79 70 80 60 50 59 49 58 48 57 47 56 46 55 45 54 44 53 43 52 42 51 41 31 21 32 22 33 23 34 24 35 25 36 26 37 27 38 28 39 29 40 30 20 10 19 9 18 8 17 7 16 6 15 5 14 4 13 3 12 2 11 1
+
+
+  1   2   3   4   5   6   7   8   9
+ 10  11  12  13  14  15  16  17  18
+ 19  20  21  22  23  24  25  26  27
+ 28  29  30  31  32  33  34  35  36
+ 37  38  39  40  41  42  43  44  45
+ 46  47  48  49  50  51  52  53  54
+ 55  56  57  58  59  60  61  62  63
+ 64  65  66  67  68  69  70  71  72
+ 73  74  75  76  77  78  79  80  81
+ 82  83  84  85  86  87  88  89  90
+ 91  92  93  94  95  96  97  98  99
+100 101 102 103 104 105 106 107 108
+109 110 111 112 113 114 115 116 117
+118 119 120 121 122 123 124 125 126
+127 128 129 130 131 132 133 134 135
+136 137 138 139 140 141 142 143 144
+145 146 147 148 149 150 151 152 153
+
+(17, 9, 17, 1, N, HS, 2)
+145 146 136 137 127 128 118 119 109 110 100 101 91 92 82 83 73 74 64 65 55 56 46 47 37 38 28 29 19 20 10 11 1 2 9 8 18 17 27 26 36 35 45 44 54 53 63 62 72 71 81 80 90 89 99 98 108 107 117 116 126 125 135 134 144 143 153 152 147 148 138 139 129 130 120 121 111 112 102 103 93 94 84 85 75 76 66 67 57 58 48 49 39 40 30 31 21 22 12 13 3 4 7 6 16 15 25 24 34 33 43 42 52 51 61 60 70 69 79 78 88 87 97 96 106 105 115 114 124 123 133 132 142 141 151 150 0 149 0 140 0 131 0 122 0 113 0 104 0 95 0 86 0 77 0 68 0 59 0 50 0 41 0 32 0 23 0 14 0 5    
+-->
