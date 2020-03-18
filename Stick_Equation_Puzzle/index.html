@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MatchSolver</title>
+
+<style>
+    @font-face {
+        font-family: 'matchstick';
+        src: url( 'digital-7.regular.ttf');
+    }
+    li, input, td, tbody th, .matchsticks {
+        font-family: 'matchstick',monospace;
+        font-size: xx-large;
+
+        /* Chrome problems:*/
+        height: 1em;
+    }
+
+    /* Chrome problems:*/
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+        input {font-family: monospace;}
+    }
+
+    ul {list-style: none;}
+    li:hover {cursor: pointer;}
+    td {text-align: right; letter-spacing: 0.5em;}
+</style>
+</head>
+<body onload="setup()">
+
+<h1>Sstick Equation Puzzle solver</h1>
+
+<p>Enter the puzzle in the input box, or click on any equation to analyze it. If the equation is incorrect, all solutions will be displayed.
+    If the equation is correct, possible puzzles (simple mutations) will be displayed.</p>
+
+<p>Note that <span class="matchsticks">7</span> really only uses three sticks (1 top horizontal & 2 right side vertical), and that <span class="matchsticks">*</span> means multiply.
+    Couldn't find a better font to use.</p>
+
+<ul id="samples">
+</ul>
+
+
+<form>
+    <input id="equation" value="">
+</form>
+
+
+<div id="status"></div>
+
+<h2>Puzzle Rules</h2>
+
+<p>Only one stick may be moved. The table below lists all possible moves.</p>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Character</th>
+        <th>Transforms to</th>
+        <th>Add match to get...</th>
+        <th>Remove match to get...</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+<!--<script src="match.js"></script>-->
+<script src="Stick_Equation_Puzzle/sep L1.js"></script>
+
+</body>
+</html>
