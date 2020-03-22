@@ -5,28 +5,38 @@
     <!-- Input & calculations -->
     <head>
     <script>
-        // Input
+        var list = []; // test to array for easier value manipulation.
+        
+        // Input file selection
         var openFile = function (event) {
             var input = event.target;
-
             var reader = new FileReader();
             reader.onload = function () {
                 var text = reader.result;
+                console.log("Type of the \"text\" variable: " + typeof text);
                 var node = document.getElementById('output');
                 node.innerText = text;
                 console.log(reader.result.substring(0, 200));
+                textToArray(text); // To Array
             };
             reader.readAsText(input.files[0]);
         };
 
+        // First 2 "text" lines have only 1 number value each, the rest have 2 numbers separated by a comma each.
+        // Turn the input "text" into an array, eg.: lines[ln1[v1], ln2[v2], ln3[v3, v4], ln4[v5, v6], ln5[v7, v8] ...].
+        function textToArray(text){
+            list = text.split("\n");
+            for (var i = 0; i < list.length-1; i++) list[i] = list[i].split(",");
+            list.pop(list.length-1);
+            console.log(list);
+        }
+
         // Calculations
-        function OneLaneTimer(){
-            var i;
-        } // L1
-
-
-
-
+        function OneLaneTimer(n, m, cs){ // L1
+            olt = str(x[1] - x[0] + 2);
+            for (x in cs)
+	            return ','.join(olt); // Arrival times in a line separated only by a comma.
+        }
 
     </script>
     </head>
