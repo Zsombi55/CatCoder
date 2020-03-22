@@ -12,7 +12,7 @@
 // 
 //  The solutions were mostly woked out on paper, so I know how to solve it in theory:
 // 4125673:12, 41256793:21, 337424981:made_mistake_so_unknown, 537430451:3, 200899998:0, 537499093:8, 2147483059:8
-// the other three numbers were too long to do by hand in my alotted time - I am preparing for the interview afterall.
+// the other three numbers were too long to do by hand in my alotted time.
 
 
 var n = 537430451;
