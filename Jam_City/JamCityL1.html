@@ -5,6 +5,8 @@
     <!-- Input & calculations -->
     <head>
     <script>
+        
+        
         var list = []; // test to array for easier value manipulation.
         
         // Input file selection
@@ -14,10 +16,12 @@
             reader.onload = function () {
                 var text = reader.result;
                 console.log("Type of the \"text\" variable: " + typeof text);
-                var node = document.getElementById('output');
+                var node = document.getElementById("output");
                 node.innerText = text;
                 console.log(reader.result.substring(0, 200));
                 textToArray(text); // To Array
+                var res = document.getElementById("results");
+                res.innerText = OneLaneTimer(list); // Level 1: car times on one lane.
             };
             reader.readAsText(input.files[0]);
         };
@@ -29,13 +33,17 @@
             for (var i = 0; i < list.length-1; i++) list[i] = list[i].split(",");
             list.pop(list.length-1);
             console.log(list);
+            return list;
         }
 
         // Calculations
-        function OneLaneTimer(n, m, cs){ // L1
-            olt = str(x[1] - x[0] + 2);
-            for (x in cs)
-	            return ','.join(olt); // Arrival times in a line separated only by a comma.
+        function OneLaneTimer(list){ // L1 - Arrival times in a line separated only by a comma.
+            var olt = [];
+            for (i = 2; i < list.length; i++) {
+                olt.push(list[i][1] - list[i][0] + 2);  
+            }
+            console.log(olt);
+            return olt;
         }
 
     </script>
@@ -43,9 +51,10 @@
     
     <!-- Output -->
     <body>
-    <input type='file' accept='text/plain' onchange='openFile(event)'><br>
-    <div id='output'>
-    ...
-    </div>
+    <input type="file" accept="text/plain" onchange="openFile(event)"><br>
+    <b>Input file content:</b>
+    <div id="output">...</div><br>
+    <b>Calculations' output:</b>
+    <div id="results">...</div>
     </body>
     </html>
