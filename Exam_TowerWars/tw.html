@@ -51,6 +51,7 @@ print after each change, or print each step between each "stop" phase (start, tu
         function textToArray(text){
             list = text.split("\n");
             for (var i = 0; i < list.length-1; i++) list[i] = list[i].split(" ");
+            
             list[1].forEach(element => {
                 actionList.push(element);  
             });
@@ -62,13 +63,35 @@ print after each change, or print each step between each "stop" phase (start, tu
             return list, actionList;
         }
 
-        // Calculations
-        /* function Destinations(list){ // L1 - get destination coordinates.
-            var d = [];
-            
-            console.log(d);
-            return d;
-        } */
+        ///// Calculations
+        // Directions
+        function getDirection(t) {return t;}
+        function setDirection(t, new_t){
+            if (t = "N") {
+                if (new_t = "1") t = "E"; else
+                if (new_t = "2") t = "S"; else
+                if (new_t = "3") t = "W";
+            } else
+            if (t = "E") {
+                if (new_t = "1") t = "S"; else
+                if (new_t = "2") t = "W"; else
+                if (new_t = "3") t = "N";
+            } else
+            if (t = "S") {
+                if (new_t = "1") t = "W"; else
+                if (new_t = "2") t = "N"; else
+                if (new_t = "3") t = "E";
+            } else
+            if (t = "W") {
+                if (new_t = "1") t = "N"; else
+                if (new_t = "2") t = "E"; else
+                if (new_t = "3") t = "S";
+            }
+            return t;
+        }
+
+
+        /* function Destinations(list){ // L1 - get destination coordinates.var d = [];console.log(d);return d;} */
 
     </script>
     </head>
