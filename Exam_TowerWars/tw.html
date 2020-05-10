@@ -29,6 +29,7 @@ print after each change, or print each step between each "stop" phase (start, tu
         
         var list = []; // text to array.
         var actionList = []; // command-step line to array.
+        var t = "E"; // turned towards direction.
         
         // Input file selection & display content.
         var openFile = function (event) {
@@ -36,7 +37,7 @@ print after each change, or print each step between each "stop" phase (start, tu
             var reader = new FileReader();
             reader.onload = function () {
                 var text = reader.result;
-                console.log("Type of the \"text\" variable: " + typeof text);
+                console.log("File Loaded:" + typeof text);
                 var node = document.getElementById("output");
                 node.innerText = text;
                 console.log(reader.result.substring(0, 200));
@@ -63,6 +64,11 @@ print after each change, or print each step between each "stop" phase (start, tu
             return list, actionList;
         }
 
+/* iterate actionList by 2 , setDirection by current index value , set coming direction axis smt.like: y += step_value or: x -= step_value
+a = 2 , b = "1"
+a + b = 21
+a + parseInt(b) = 3
+*/
         ///// Calculations
         // Directions
         function getDirection(t) {return t;}
