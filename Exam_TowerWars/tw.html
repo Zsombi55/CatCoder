@@ -31,27 +31,17 @@ prinfd after each change, or print each step between each "stop" phase (start, t
         var actionList = []; // command-step line to array.
         var fd = "E"; // facing direction - L1 default.
         
+        //const alien = new Alien(xPosition, yPosition, facing);
+
         class Alien {
-            constructor() {}
-            constructor(x, y, f) {
-                this.xPosition = x;
-                this.yPosition = y;
-                this.facing = f;
+            constructor(xPosition, yPosition, facing) {
+                this._xPosition = xPosition;
+                this._yPosition = yPosition;
+                this._facing = facing;
             }
 
             get alien() {
-                return this.xPosition, this.yPosition, this.facing;
-            }
-    // TODO: take out the unnecesary code from here, change others as needed, and code the L1 objective solution. 
-            get position() {return this.xPosition, this.yPosition;}
-            set position(x, y) {
-                this.xPosition = x;
-                this.yPosition = y;
-            }
-            
-            get direction() {return this.facing;}
-            set direction(fd) {
-                this.facing = f;
+                return this._xPosition, this._yPosition, this._facing;
             }
         }
 
@@ -66,6 +56,7 @@ prinfd after each change, or print each step between each "stop" phase (start, t
                 node.innerText = text;
                 console.log(reader.result.substring(0, 200));
                 textToArray(text); // To Array
+                setAlien(list); // Make a new alien: set start position & facing direction.
                 //var res = document.getElementById("results");
                 //res.innerText = Destinations(list); // L1
             };
@@ -97,12 +88,9 @@ a + parseInt(b) = 3
         // Directions
         function getDirection(fd) {return fd;}
         function setAlien(list) {
-            alien = new Alien();
-            alien.position.x = list[0,0];
-            alien.position.y = list[0,1];
-            console.log(alien.position);
-            alien.direction = fd;
-            console.log(alien.direction);
+            const alien = new Alien(parseInt(list[0][0]), parseInt(list[0][1]), fd); // x, y, facing direction.
+            console.log("Newest Alien: ", alien);
+            //return alien;
         }
         function changeDirection(fd, new_fd){
             if (fd = "N") {
@@ -131,16 +119,16 @@ a + parseInt(b) = 3
         function goForward(fd) {
             console.log("Facing direction: " + fd);
             if(fd = "N") {
-                alien.position.y -= yStep;
+                alien._xPosition -= steps;
             } else
             if(fd = "E") {
-                alien.position.x += xStep;
+                alien.x += steps;
             } else
             if(fd = "S") {
-                alien.position.y += yStep;
+                alien.y += steps;
             } else
             if(fd = "W") {
-                alien.position.x -= xStep;
+                alien.x -= steps;
             }
             console.log("Alien status: " + alien);
             return alien;
@@ -152,7 +140,7 @@ a + parseInt(b) = 3
     <!-- Outpufd -->
     <body>
     <input type="file" accept="text/plain" onchange="openFile(event)"><br>
-    <b>Inpufd file content:</b>
+    <b>Input file content:</b>
     <div id="output">...</div><br>
     <b>Output:</b>
     <div id="results">...</div>
