@@ -28,7 +28,7 @@ prinfd after each change, or print each step between each "stop" phase (start, t
     <script>
         
         var list = []; // texfd to array.
-        var actionList = []; // command-step line to array.
+        var actionList = []; // command-step line to array -- remove later to use "list".
         var fd = "E"; // facing direction - L1 default.
         
         //const alien = new Alien(xPosition, yPosition, facing);
@@ -40,7 +40,7 @@ prinfd after each change, or print each step between each "stop" phase (start, t
                 this._facing = facing;
             }
 
-            get alien() {
+            get() {
                 return this._xPosition, this._yPosition, this._facing;
             }
         }
@@ -51,12 +51,13 @@ prinfd after each change, or print each step between each "stop" phase (start, t
             var reader = new FileReader();
             reader.onload = function () {
                 var text = reader.result;
-                console.log("File Loaded:" + typeof text);
+                console.log("File Content Type:" + typeof text);
                 var node = document.getElementById("output");
                 node.innerText = text;
                 console.log(reader.result.substring(0, 200));
                 textToArray(text); // To Array
                 setAlien(list); // Make a new alien: set start position & facing direction.
+                parseCommands(actionList);
                 //var res = document.getElementById("results");
                 //res.innerText = Destinations(list); // L1
             };
@@ -84,35 +85,57 @@ a = 2 , b = "1"
 a + b = 21
 a + parseInt(b) = 3
 */
+        function parseCommands(actionList) {
+            var new_nr;
+            //var turn = "T";
+            for(var i = 0; i < actionList.length; i+=2) {
+                if(actionList[i] == "T") { //turn) {
+                    new_nr = actionList[i+1];
+                    console.log("IF Current FD: " + fd + ". New nr.: " + actionList[i+1]);
+                    fd = changeDirection(fd, new_nr);
+                }
+                console.log("FOR Current FD: " + fd + ". New nr.: " + actionList[i+1]);
+                if(actionList[i] == "F") {
+                    console.log("IF F, i+1 = ", actionList[i+1]); //goForward(fd);
+                    goForward(fd, new_nr);
+                }
+            }
+        }
+
         ///// Calculations
         // Directions
         function getDirection(fd) {return fd;}
         function setAlien(list) {
             const alien = new Alien(parseInt(list[0][0]), parseInt(list[0][1]), fd); // x, y, facing direction.
             console.log("Newest Alien: ", alien);
-            //return alien;
+            return alien;
         }
-        function changeDirection(fd, new_fd){
-            if (fd = "N") {
-                if (new_fd = "1") fd = "E"; else
-                if (new_fd = "2") fd = "S"; else
-                if (new_fd = "3") fd = "W";
+        function changeDirection(fd, new_nr){
+            if (fd == "N") {
+                if (new_nr == "1") fd = "E"; else
+                if (new_nr == "2") fd = "S"; else
+                if (new_nr == "3") fd = "W";
+                console.log("Changed FD from N to: ", fd);
             } else
-            if (fd = "E") {
-                if (new_fd = "1") fd = "S"; else
-                if (new_fd = "2") fd = "W"; else
-                if (new_fd = "3") fd = "N";
+            if (fd == "E") {
+                if (new_nr == "1") fd = "S"; else
+                if (new_nr == "2") fd = "W"; else
+                if (new_nr == "3") fd = "N";
+                console.log("Changed FD from E to: ", fd);
             } else
-            if (fd = "S") {
-                if (new_fd = "1") fd = "W"; else
-                if (new_fd = "2") fd = "N"; else
-                if (new_fd = "3") fd = "E";
+            if (fd == "S") {
+                if (new_nr == "1") fd = "W"; else
+                if (new_nr == "2") fd = "N"; else
+                if (new_nr == "3") fd = "E";
+                console.log("Changed FD from S to: ", fd);
             } else
-            if (fd = "W") {
-                if (new_fd = "1") fd = "N"; else
-                if (new_fd = "2") fd = "E"; else
-                if (new_fd = "3") fd = "S";
+            if (fd == "W") {
+                if (new_nr == "1") fd = "N"; else
+                if (new_nr == "2") fd = "E"; else
+                if (new_nr == "3") fd = "S";
+                console.log("Changed FD from W to: ", fd);
             }
+            console.log("Final FD is: ", fd);
             return fd;
         }
 
