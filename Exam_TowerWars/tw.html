@@ -40,9 +40,13 @@ prinfd after each change, or print each step between each "stop" phase (start, t
                 this._facing = facing;
             }
 
-            get() {
+            get alien() {
                 return this._xPosition, this._yPosition, this._facing;
             }
+
+            set xPos(xPosition) {this._xPosition = xPosition}
+            set yPos(yPosition) {this._yPosition = yPosition}
+            set fDir(facing) {this._facing = facing} // like the "fd" global var.
         }
 
         // Input file selection & display content.
@@ -85,7 +89,7 @@ a = 2 , b = "1"
 a + b = 21
 a + parseInt(b) = 3
 */
-        function parseCommands(actionList) {
+        function parseCommands(actionList, alien) {
             var new_nr;
             //var turn = "T";
             for(var i = 0; i < actionList.length; i+=2) {
@@ -96,8 +100,8 @@ a + parseInt(b) = 3
                 }
                 console.log("FOR Current FD: " + fd + ". New nr.: " + actionList[i+1]);
                 if(actionList[i] == "F") {
-                    console.log("IF F, i+1 = ", actionList[i+1]); //goForward(fd);
-                    goForward(fd, new_nr);
+                    console.log("IF F, i+1 = ", actionList[i+1]);
+                    goForward(fd, new_nr, alien);
                 }
             }
         }
@@ -136,12 +140,14 @@ a + parseInt(b) = 3
                 console.log("Changed FD from W to: ", fd);
             }
             console.log("Final FD is: ", fd);
+            alien.fDir(fd);
             return fd;
         }
-
-        function goForward(fd) {
-            console.log("Facing direction: " + fd);
-            if(fd = "N") {
+        
+        function goForward(fd, new_nr, alien) {
+            var steps = new_nr;
+            console.log("Facing: " + fd + ", Steps: " + steps + ", Position: " + alien);
+            /* if(fd = "N") {
                 alien._xPosition -= steps;
             } else
             if(fd = "E") {
@@ -152,9 +158,9 @@ a + parseInt(b) = 3
             } else
             if(fd = "W") {
                 alien.x -= steps;
-            }
+            } */
             console.log("Alien status: " + alien);
-            return alien;
+            //return alien;
         }
 
     </script>
