@@ -1,0 +1,93 @@
+
+<!-- Personal Coding Contest (1st practical "interview" for CatalystS/Cloudflight, 2nd try), Summit
+Level 1:: find all  numbers > 0  and print one instance of each in ascending order separated by whitespace, else one 0.
+    Input format:
+<number_of_rows> <number_of_columns>
+<height> <height> ....
+<height> <height> ....
+....
+    Output format:
+<height0> <height1> <height2> … (sorted ascending, ignore duplicates)
+0 (if there are no buildings)
+
+    Process:
+Iterate the matrix, if nr > 0 and not in result list put it there else check next;
+If none are > 0 then put 0 in the list, sort the list elements in ascending order, then print them with a space in between.
+
+Level 2:: some math suff I don't really understand ... calculate the center point coordinates of a line in a 2D grid.
+    Input format:
+<number_of_tuples>  (in everyday language: fixed size rows)
+<r1 c1 r2 c2 ratio>
+<r1 c1 r2 c2 ratio>
+....
+    Output format:
+<r c>
+<r c>
+
+    Eg.: In:
+1
+0 0 6 2 0,55000
+    Out:
+3 1
+-->
+
+<html>
+    <!-- Input & calculations -->
+    <head>
+    <script>
+        
+        var list = []; // text to array.
+
+        // Input file selection & display content.
+        var openFile = function (event) {
+            var input = event.target;
+            var reader = new FileReader();
+            reader.onload = function () {
+                var text = reader.result;
+                //console.log("File Content Type:" + typeof text);
+                var node = document.getElementById("output");
+                node.innerText = text;
+                //console.log(reader.result.substring(0, 200));
+                textToArray(text); // To Array
+                //var res = document.getElementById("results");
+                //res.innerText = Destinations(list); // L1
+            };
+            reader.readAsText(input.files[0]);
+        };
+
+        // Turn the input "text" into an array, line by line.
+        function textToArray(text){
+            list = text.split("\n");
+            for (var i = 0; i < list.length-1; i++) list[i] = list[i].split(" ");
+            list.pop(list.length-1);
+            //console.log(list);
+            return list;
+        }
+
+
+        ///// Calculations
+        // Directions
+        
+
+    </script>
+    </head>
+    
+    <!-- Outpufd -->
+    <body>
+    <input type="file" accept="text/plain" onchange="openFile(event)"><br>
+    <b>Input file content:</b>
+    <div id="output">...</div><br>
+    <b>Output:</b>
+    <div id="results">...</div>
+    </body>
+    </html>
+
+<!-- Possible Output:
+1.1 - 5 8 9 10
+1.2 - 13 71 73 85 93 96 127 149 169 211 218 247 276 292 294 295 360 382
+1.3 - 5 15 35 59 86 119 174 421 452
+1.4 - 0
+
+2 - don't really understand the math here  ;(
+2.1 - 3 1 , ...
+-->

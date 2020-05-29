@@ -1,13 +1,13 @@
 
 <!-- Personal Coding Contest (1st practical "interview" for CatalystS/Cloudflight), Tower Wars
-Level 1:: in principle ifd is similar to the "Harvester/Farmer" test.
+Level 1:: in principle it is similar to the "Harvester/Farmer" test.
 X , Y = coordinate values on a 2D grid.
 COMMAND = { F - forward (n steps), fd - turn (90 degrees clockwise)}
 STEPS = integer, number of times to execute command
-    Inpufd format:
+    Input format:
 <X> <Y>
 <COMMAND> <STEPS> <COMMAND> <STEPS> ...
-    Outpufd format:
+    Output format:
 <Finish_X> <Finish_Y>
 
     Process:
@@ -27,7 +27,7 @@ prinfd after each change, or print each step between each "stop" phase (start, t
     <head>
     <script>
         
-        var list = []; // texfd to array.
+        var list = []; // text to array.
         var actionList = []; // command-step line to array -- remove later to use "list".
         var fd = "E"; // facing direction - L1 default.
         
@@ -40,8 +40,8 @@ prinfd after each change, or print each step between each "stop" phase (start, t
                 this._facing = facing;
             }
 
-            get alien() {
-                return this._xPosition, this._yPosition, this._facing;
+            get aStatus() {
+                return [this._xPosition, this._yPosition, this._facing];
             }
 
             set xPos(xPosition) {this._xPosition = xPosition}
@@ -55,10 +55,10 @@ prinfd after each change, or print each step between each "stop" phase (start, t
             var reader = new FileReader();
             reader.onload = function () {
                 var text = reader.result;
-                console.log("File Content Type:" + typeof text);
+                //console.log("File Content Type:" + typeof text);
                 var node = document.getElementById("output");
                 node.innerText = text;
-                console.log(reader.result.substring(0, 200));
+                //console.log(reader.result.substring(0, 200));
                 textToArray(text); // To Array
                 setAlien(list); // Make a new alien: set start position & facing direction.
                 parseCommands(actionList);
@@ -79,8 +79,8 @@ prinfd after each change, or print each step between each "stop" phase (start, t
             //.match(/(.*?\s){2}/g);//match(/[^\s]+\s[^\s]+/g);
             //actionList[0] = list[1].match(/(.*?\s){2}/g);
             list.pop(list.length-1);
-            console.log(list);
-            console.log(actionList);
+            //console.log(list);
+            //console.log(actionList);
             return list, actionList;
         }
 
@@ -95,12 +95,12 @@ a + parseInt(b) = 3
             for(var i = 0; i < actionList.length; i+=2) {
                 if(actionList[i] == "T") { //turn) {
                     new_nr = actionList[i+1];
-                    console.log("IF Current FD: " + fd + ". New nr.: " + actionList[i+1]);
+                    //console.log("IF Current FD: " + fd + ". New nr.: " + actionList[i+1]);
                     fd = changeDirection(fd, new_nr);
                 }
-                console.log("FOR Current FD: " + fd + ". New nr.: " + actionList[i+1]);
+                //console.log("FOR Current FD: " + fd + ". New nr.: " + actionList[i+1]);
                 if(actionList[i] == "F") {
-                    console.log("IF F, i+1 = ", actionList[i+1]);
+                    //console.log("IF F, i+1 = ", actionList[i+1]);
                     goForward(fd, new_nr, alien);
                 }
             }
@@ -112,6 +112,8 @@ a + parseInt(b) = 3
         function setAlien(list) {
             const alien = new Alien(parseInt(list[0][0]), parseInt(list[0][1]), fd); // x, y, facing direction.
             console.log("Newest Alien: ", alien);
+            document.getElementById("testing").innerText = 
+                "Alien Status (x Position, y Position, facing Direction): " + alien.aStatus;
             return alien;
         }
         function changeDirection(fd, new_nr){
@@ -172,7 +174,9 @@ a + parseInt(b) = 3
     <b>Input file content:</b>
     <div id="output">...</div><br>
     <b>Output:</b>
-    <div id="results">...</div>
+    <div id="results">...</div><br>
+    <b>Temp. Test:</b>
+    <div id="testing">...</div>
     </body>
     </html>
 
