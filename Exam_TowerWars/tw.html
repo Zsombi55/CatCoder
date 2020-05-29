@@ -101,7 +101,8 @@ a + parseInt(b) = 3
                 //console.log("FOR Current FD: " + fd + ". New nr.: " + actionList[i+1]);
                 if(actionList[i] == "F") {
                     //console.log("IF F, i+1 = ", actionList[i+1]);
-                    goForward(fd, new_nr, alien);
+                    console.log("temp log");
+                    //goForward(fd, new_nr, alien);
                 }
             }
         }
@@ -148,7 +149,7 @@ a + parseInt(b) = 3
         
         function goForward(fd, new_nr, alien) {
             var steps = new_nr;
-            console.log("Facing: " + fd + ", Steps: " + steps + ", Position: " + alien);
+            console.log("Facing: " + fd + ", Steps: " + steps + ", Position: " + alien.aStatus);
             /* if(fd = "N") {
                 alien._xPosition -= steps;
             } else
@@ -161,7 +162,7 @@ a + parseInt(b) = 3
             if(fd = "W") {
                 alien.x -= steps;
             } */
-            console.log("Alien status: " + alien);
+            console.log("Alien status: " + alien.aStatus);
             //return alien;
         }
 
