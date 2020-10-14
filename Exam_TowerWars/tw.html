@@ -84,11 +84,6 @@ prinfd after each change, or print each step between each "stop" phase (start, t
             return list, actionList;
         }
 
-/* iterate actionList by 2 , setDirection by current index value , set coming direction axis smt.like: y += step_value or: x -= step_value
-a = 2 , b = "1"
-a + b = 21
-a + parseInt(b) = 3
-*/
         function parseCommands(actionList, alien) {
             var new_nr;
             //var turn = "T";
