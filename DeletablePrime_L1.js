@@ -1,14 +1,14 @@
 // Catalysts Coding Contest - "Deletable Primes" L1
 
 // Primes are numbers that can only be divided cleanly by 1 or themselves.
-// If removing any single digit still results in a prime, the "original" was a deletable prime.
+//  If removing any single digit still results in a prime, and if shrinking it down to one digit
+// it still remains a prime, then the "original" was a deletable prime.
 
 
 //  THIS IS INCOMPLETE and not quite in the right direction.
 // Spent too long trying to solve this one; I will try again another time.
 //
-//  I wanted to upload this code anyway, as proof that I have tried to code it,
-// but sadly it's not possible unless all answers are correct.
+//  I wanted to upload this code anyway, as proof that I have tried to code it.
 // 
 //  The solutions were mostly woked out on paper, so I know how to solve it in theory:
 // 4125673:12, 41256793:21, 337424981:made_mistake_so_unknown, 537430451:3, 200899998:0, 537499093:8, 2147483059:8
